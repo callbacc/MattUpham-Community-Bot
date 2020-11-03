@@ -14,7 +14,10 @@ const Ban: Command = {
     description: "Help command displays all available commands and their usage",
     usage: "help",
   },
-  run: async function (client, message, args: string[]) {
+    run: async function (client, message, args: string[]) {
+    const server = client.guilds.cache.get(`621181761870757898`);
+    //const guild = server?.channels.cache.get("772537802256023562");
+    const channel = server?.channels.cache.get("772537802256023562");
     console.log("!")
     if (!message.guild?.me?.hasPermission('BAN_MEMBERS'))
       return message.reply('No permisson.')
@@ -53,7 +56,8 @@ const Ban: Command = {
                 value: args[1]
             }
         ]);
-
+    //@ts-ignore
+    channel?.send(embed);
     await user.send(embed).catch(() => null);
 
     await message.guild.members
